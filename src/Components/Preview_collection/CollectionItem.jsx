@@ -3,7 +3,6 @@ import '../Preview_collection/CollectionItem.styles.scss'
 
 
 const CollectionItem = ({ id, name, price, imageUrl }) => {
-    console.log(imageUrl,"url")
     return (
         <div className='collection-item'>
             <div
