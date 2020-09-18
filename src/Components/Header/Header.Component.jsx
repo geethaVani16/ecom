@@ -5,7 +5,7 @@ import { ReactComponent as ImageLogo } from '../../Images/crown.svg'
 import '../Header/Header.styles.scss'
 import { auth } from '../../firebase/firebase.utils'
 
- function HeaderComponent({ currentUser }) {
+function HeaderComponent({ currentUser }) {
     return (
         <div className='header'>
             <Link className='logo-container' to='/'>
@@ -29,7 +29,7 @@ import { auth } from '../../firebase/firebase.utils'
     )
 }
 
-const mapStateToProps=(state) => ({
-    currentUser:state.user.currentUser
+const mapStateToProps = (state) => ({
+    currentUser: state.user.currentUser
 })
 export default connect(mapStateToProps)(HeaderComponent)
