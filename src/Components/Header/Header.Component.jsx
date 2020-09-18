@@ -30,7 +30,6 @@ import { auth } from '../../firebase/firebase.utils'
 }
 
 const mapStateToProps=(state) => ({
-
     currentUser:state.user.currentUser
 })
 export default connect(mapStateToProps)(HeaderComponent)
