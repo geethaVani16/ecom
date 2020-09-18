@@ -6,6 +6,8 @@ import ShopPage from './Pages/Shop/ShopPage.Component';
 import HeaderComponent from './Components/Header/Header.Component';
 import SignInSignUp from './Pages/Sign-In-Sign-Up/Sign-In-Sign-Up';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
+import { connect } from 'react-redux';
+import { setCurrentUser } from './Redux/user/user.actions'
 
 
 class App extends React.Component {
@@ -21,7 +23,7 @@ class App extends React.Component {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth)
         userRef.onSnapshot(snapshot => {
-          this.setState({
+          this.props.setCurrentUser({
             currentUser: {
               id: snapshot.id,
               ...snapshot.data()
@@ -31,7 +33,7 @@ class App extends React.Component {
 
       }
       else {
-        this.setState({currentUser:userAuth})
+        this.props.setCurrentUser({ userAuth })
       }
     })
   }
@@ -39,22 +41,24 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <HeaderComponent currentUser={this.state.currentUser} />
+        <HeaderComponent />
         <Switch>
           <Route exact path='/' component={HomePage} />
-          {/* <Route exact path='/hats' component={HatPage} /> */}
           <Route path='/shop' component={ShopPage} />
           <Route path='/signin' component={SignInSignUp} />
-          {/* <Route extact path='/topics/:topicId' component={TopicsDetails} /> */}
         </Switch>
 
-        {/* <HomePage/> */}
       </div>
     );
   }
 }
 
-export default App;
+
+const mapDispatchToProps = (dispatch) => ({
+  setCurrentUser: user => dispatch(setCurrentUser(user))
+})
+
+export default connect(null,mapDispatchToProps)(App);
 
 
 
@@ -62,14 +66,4 @@ export default App;
 
 
 
-const TopicsDetails = (props) => {
-  console.log(props, "props")
-  return (
-    <>
-      <p>{props.params.match.topicId}</p>
-      <h1>
-        TopicsDetails
-    </h1>
-    </>
-  )
-}
+
