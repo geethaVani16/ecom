@@ -16,16 +16,28 @@
             height: 100%
         }
     }
-    .name ,.quandity,.price {
+
+    .name,
+    .quandity,
+    .price {
         width: 23%;
     }
 
-    .quandity{
-        padding-left:20px ;
+    .quandity {
+        display: flex;
+
+        // padding-left:20px ;
+        .arrow {
+            cursor: pointer;
+        }
+
+        .value {
+            margin: 0 10px;
+        }
     }
 
     .remove-button {
-        padding-left:12px;
-        cursor: pointer;
+        padding-left: 12px;
+        cursor      : pointer;
     }
 }
