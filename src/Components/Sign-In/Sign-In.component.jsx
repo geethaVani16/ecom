@@ -5,12 +5,10 @@ import CustomButton from '../Custom-Button/CustomButton';
 import { signInWithGoogle, auth } from '../../firebase/firebase.utils';
 
 export default class SignIn extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            email: "",
-            password: ""
-        }
+
+    state = {
+        email: "",
+        password: ""
     }
     handleSubmit = async (event) => {
         event.preventDefault()
